@@ -1,26 +1,12 @@
 import Card from './Card.jsx'
 import {v4} from 'uuid'
 import { useState, useEffect } from 'react'
+import { characterIDs } from './API.js'
 
-const randomNames = [
-  "John",
-  "Jane",
-  "Joe",
-  "Jill",
-  "Jack",
-  "Jim",
-  "Jenny",
-  "Jerry",
-  "Judy",
-  "Jeff",
-  "Jasmine",
-  "Jared",
-  "Jocelyn",
-  "Javier",
-  "Jada",
-]
-
-
+// 
+const maxCards = 15
+// Naruto characters
+const randomNames = await characterIDs(maxCards)
 // Idea: This controls the currently picked cards and the ones that are not picked
 function App() {
   const [cards, setCards] = useState(randomNames)
@@ -36,6 +22,7 @@ function App() {
     } else {
       shuffleCards();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode, picked]);
 
 
@@ -97,26 +84,26 @@ function App() {
 <button onClick={changeMode}>{mode.toUpperCase()}</button>
 
 
-  function pickCard(name) {
-    if (picked.includes(name)) {
+  function pickCard(id) {
+    if (picked.includes(id)) {
       // Game over
       alert('Game over!')
       setPicked([])
     } else {
     // Add the name to the picked array
-    setPicked([...picked, name])
+    setPicked([...picked, id])
   }
 }
 
   return (
     <>
-    <h1>Memory Game</h1>
+    <h1>Obliviate!</h1>
     <h2>Score: {picked.length}</h2>
     <h2>High Score: {Math.max(picked.length, highScore)}</h2>
     <button onClick={changeMode}>{mode.toUpperCase()}</button>
     <div className='card-container'>
-      {cards.map((name) => (
-        <Card key={v4()} name={name} pickCard={() => {pickCard(name)}} />
+      {cards.map((id) => (
+        <Card key={v4()} char_id={id} pickCard={() => {pickCard(id)}} />
       ))}
     </div>
     </>

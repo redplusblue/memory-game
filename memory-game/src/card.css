@@ -1,3 +1,11 @@
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  font-family: "Hogwarts", sans-serif;
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -10,23 +18,91 @@
   align-items: center;
   width: fit-content;
   height: fit-content;
-  border: 2px solid green;
   border-radius: 5px;
   padding: 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
-.card:hover {
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-  transform: scale(1.05);
+.card.Gryffindor {
+  background-color: #740001;
+  color: #fff;
 }
 
-.card-image {
-  background-size: cover;
-  background-position: center;
+.card.Hufflepuff {
+  background-color: #ecb939;
+  color: #000;
+}
+
+.card.Ravenclaw {
+  background-color: #222f5b;
+  color: #fff;
+}
+
+.card.Slytherin {
+  background-color: #1a472a;
+  color: #fff;
+}
+
+.card:hover {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  transform: scale(1.01);
+}
+
+.card-image img {
+  width: 250px;
+  height: 250px;
+  border-radius: 5px;
 }
 
 .card-name {
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+/* Loading wand animation */
+.wand {
+  width: 50px;
+  height: 50px;
+  background-color: #000;
+  border-radius: 50%;
+  position: relative;
+  animation: wand 1s infinite;
+}
+
+.wand::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 50%;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+}
+
+.wand::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 50%;
+  background-color: #fff;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.wand:hover {
+  animation: none;
+}
+
+@keyframes wand {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
