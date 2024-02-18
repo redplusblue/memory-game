@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { characterIDs } from './API.js'
 
 // 
-const maxCards = 15
+const maxCards = 24
 // Naruto characters
 const randomNames = await characterIDs(maxCards)
 // Idea: This controls the currently picked cards and the ones that are not picked
@@ -12,13 +12,12 @@ function App() {
   const [cards, setCards] = useState(randomNames)
   const [picked, setPicked] = useState([])
   const [highScore, setHighScore] = useState(1)
-  const [mode , setMode] = useState('advanced')
+  const [mode , setMode] = useState('basic')
 
   // Shuffle the cards on mount
   useEffect(() => {
     if (picked.length === randomNames.length) {
-      alert('You win!')
-      setPicked([])
+      endGame('win')
     } else {
       shuffleCards();
     }
@@ -28,7 +27,7 @@ function App() {
 
   // Basic: Shuffle the cards
   function shuffleCards() {
-    if (mode === 'basic') {
+    if (mode === 'advanced') {
       let newCards = randomNames
       newCards.sort(() => Math.random() - 0.5)
       setCards(newCards)
@@ -81,31 +80,60 @@ function App() {
   setPicked([]);
 }
 
-<button onClick={changeMode}>{mode.toUpperCase()}</button>
-
-
-  function pickCard(id) {
+function pickCard(id) {
     if (picked.includes(id)) {
-      // Game over
-      alert('Game over!')
-      setPicked([])
+      endGame('lose')
     } else {
     // Add the name to the picked array
     setPicked([...picked, id])
   }
 }
 
+function endGame(cond) {
+  document.querySelector('.card-container').classList.add('hide')
+  const message = document.querySelector('.message');
+  const messageText = message.querySelector('p')
+  if (cond === 'win') {
+    messageText.textContent = 'You won!'
+  } else {
+    messageText.textContent = 'You lost!'
+  }
+  message.querySelector('.btn').classList.remove('hide')
+}
+
+function resetGame() {
+  setPicked([])
+  document.querySelector('.card-container').classList.remove('hide')
+  document.querySelector('.message').querySelector('p').textContent = ''
+  document.querySelector('.message').querySelector('.btn').classList.add('hide')
+}
+  
+
   return (
     <>
+    <nav>
+    <div className='score'>
+      <div>Score: {picked.length}</div>
+      <div>High Score: {Math.max(picked.length, highScore)}</div>
+    </div>
     <h1>Obliviate!</h1>
-    <h2>Score: {picked.length}</h2>
-    <h2>High Score: {Math.max(picked.length, highScore)}</h2>
-    <button onClick={changeMode}>{mode.toUpperCase()}</button>
+    <div className='difficulty'>
+      <label>Difficulty Level: </label>
+      <button className='btn' onClick={changeMode}>{mode.toUpperCase()}</button>
+    </div>
+    </nav>
     <div className='card-container'>
       {cards.map((id) => (
         <Card key={v4()} char_id={id} pickCard={() => {pickCard(id)}} />
       ))}
     </div>
+    <div className='message'>
+      <p></p>
+      <button className='btn hide' onClick={resetGame}>Play Again?</button>
+    </div>
+    <footer>
+      Made with <span role='img' aria-label='heart'>💜</span> by <a href='https://github.com/redplusblue'>Samir</a> using <a href='https://reactjs.org/'>React</a> and <a href='https://hp-api.onrender.com/'>Harry Potter API</a> 
+    </footer>
     </>
   )
 }

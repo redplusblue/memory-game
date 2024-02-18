@@ -18,7 +18,6 @@ function Card({char_id, pickCard=()=>{}}) {
     useEffect(() => {
         const fetchData = async () => {
             const data = await getInfo(char_id);
-            console.log(data);
             setInfo(data);
         };
 
