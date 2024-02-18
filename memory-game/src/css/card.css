@@ -1,0 +1,68 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.card {
+  display: flex;
+  background-color: #e8e8e8;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 30px;
+  background: lightgrey;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.card.Gryffindor {
+  background-color: rgba(116, 0, 1, 0.8);
+  color: #fff;
+}
+
+.card.Hufflepuff {
+  background-color: rgba(236, 185, 57, 0.8);
+  color: #000;
+}
+
+.card.Ravenclaw {
+  background-color: rgba(34, 47, 91, 0.8);
+  color: #fff;
+}
+
+.card.Slytherin {
+  background-color: rgba(26, 71, 42, 0.8);
+  color: #fff;
+}
+
+.card-image img {
+  width: 15vw;
+  height: 30vh;
+  border-radius: 30px;
+}
+
+.card-name {
+  font-size: max(1.2rem, 14px);
+  font-weight: bold;
+}
+
+.hide {
+  display: none !important;
+  transition: 0.3s;
+}
+
+.dissapear {
+  opacity: 0;
+}

@@ -1,0 +1,208 @@
+@font-face {
+  font-family: "Yusei Magic";
+  src: url("../public/YuseiMagic-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Harry Potter";
+  src: url("//db.onlinewebfonts.com/t/0421d4186d6efbfc5331fe180895e780.eot");
+  src: url("//db.onlinewebfonts.com/t/0421d4186d6efbfc5331fe180895e780.eot?#iefix")
+      format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/0421d4186d6efbfc5331fe180895e780.woff2")
+      format("woff2"),
+    url("//db.onlinewebfonts.com/t/0421d4186d6efbfc5331fe180895e780.woff")
+      format("woff"),
+    url("//db.onlinewebfonts.com/t/0421d4186d6efbfc5331fe180895e780.ttf")
+      format("truetype"),
+    url("//db.onlinewebfonts.com/t/0421d4186d6efbfc5331fe180895e780.svg#Harry Potter")
+      format("svg");
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #eeba30;
+}
+
+body {
+  font-family: "Yusei Magic", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #740001;
+  color: #eeba30;
+}
+
+nav:hover h1 {
+  transform: scale(1.5);
+  animation: glint 3s forwards;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 3rem;
+  transition: 0.3s;
+  font-family: "Harry Potter", sans-serif;
+  cursor: default;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  cursor: default;
+  transition: 0.3s;
+}
+
+.difficulty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+}
+
+/* Button */
+.btn {
+  width: max(5.5em, fit-content);
+  height: 2em;
+  margin: 0.5em;
+  background: #740001;
+  color: #eeba30;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: "Yusei Magic", sans-serif;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+button:hover {
+  color: #740001;
+}
+
+button:after {
+  content: "";
+  background: #eeba30;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+}
+
+button:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.play-btn {
+  width: 10em;
+  height: 3em;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.message p {
+  font-size: 2em;
+  font-weight: bold;
+  color: #740001;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1rem;
+  color: rgba(116, 0, 1, 0.8);
+  font-weight: bold;
+}
+
+footer a {
+  color: #740001;
+  font-family: "Harry Potter", sans-serif;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+footer a:hover {
+  text-shadow: 2px 2px 4px rgba(116, 0, 1, 0.25);
+}
+
+/* Text glint (Shine from left to right) using box shadows */
+@keyframes glint {
+  0% {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Initial shadow */
+  }
+  25% {
+    text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.7); /* Increase shadow size */
+  }
+  50% {
+    text-shadow: 6px 6px 16px rgba(0, 0, 0, 0.9); /* Further increase shadow size */
+  }
+  75% {
+    text-shadow: 8px 8px 20px rgba(0, 0, 0, 1); /* Further increase shadow size */
+  }
+  100% {
+    text-shadow: 10px 10px 24px rgba(0, 0, 0, 1); /* Largest shadow size */
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .score {
+    font-size: 16px;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  .difficulty {
+    font-size: 1rem;
+  }
+  .btn {
+    width: max(5em, fit-content);
+    height: 2em;
+    font-size: 1rem;
+  }
+  .card-image img {
+    width: 20vw;
+  }
+  .card-name {
+    font-size: 12px;
+  }
+}
