@@ -4,7 +4,7 @@
 
 The game is simple, click on a character to earn points, but don't click on the same character twice or you lose!
 
-[Pages Deployment]
+[![Pages Deployment](https://github.com/redplusblue/memory-game/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/redplusblue/memory-game/actions/workflows/pages/pages-build-deployment)
 
 <table>
   <td align="center"><b>Made using:</b></td>
